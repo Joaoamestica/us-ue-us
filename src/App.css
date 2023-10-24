@@ -1,0 +1,14 @@
+#root {
+  max-width: 1280px;
+  padding: 2rem;
+}
+
+.box-producto{
+  width: 30%;
+}
+
+.box-carro{
+  margin-top: 40px;
+  margin-left: 10px;
+  width: 50%;
+}
