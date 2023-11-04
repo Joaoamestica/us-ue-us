@@ -18,7 +18,12 @@ export const FomularioUsuario = () => {
         // firstName: yup.string().min(4),
         name: yup.string().required('Este campo es requerido'),
         email: yup.string().email("Este campo debe ser email").required('Este campo es requerido'),
-        rut: yup.string().test('rut-invalido', 'Rut invalido',validarRut)
+        rut: yup.string().test('rut-invalido', 'Rut invalido',validarRut),
+        phone: yup.string().min(9,'Este campo debe tener 9 caracteres').max(9, 'Este campo debe tener 9 caracteres'),
+        address: yup.string().max(100, 'Este campo debe tener maximo 100 caracteres' ),
+        region: yup.string().required('Este campo debe ser requerido'),
+        commune: yup.string().required('Este campo debe ser requerido'),
+        message: yup.string().required('Este campo debe ser requerido')
       });
 
   const { values, errors, handleBlur, touched, handleChange, handleSubmit } =
@@ -28,6 +33,11 @@ export const FomularioUsuario = () => {
         name: "",
         email: "",
         rut: "",
+        phone: "",
+        address:"",
+        region: "",
+        commune: "",
+        message: ""
       },
       validationSchema: basicSchema,
 
@@ -112,9 +122,81 @@ export const FomularioUsuario = () => {
 
 
 
+                <label htmlFor="phone" className="label-inputs">Teléfono (*)</label>
+                <input
+                    placeholder="123456789"
+                    className="campo-corto"
+                    type="text"
+                    id="phone"
+                    name="phone"
+                    value={values.phone}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                />
+                {errors.phone && touched.phone && (<span className="help-text">{errors.phone}</span>)}
 
 
 
+
+                <label htmlFor="address" className="label-inputs">Dirección de envío (*)</label>
+                <input
+                    type="text"
+                    id="address"
+                    name="address"
+                    placeholder="Calle, Número, Depto., Villa, etc. (Máximo 100 caracteres)"
+                    className="campo-formulario"
+                    value={values.address}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                />
+                {errors.address && touched.address && (<span className="help-text">{errors.address}</span>)}
+
+
+
+
+
+                <label htmlFor="region" className="label-inputs">Región (*)</label>
+                <input
+                    type="text"
+                    id="region"
+                    name="region"
+                    placeholder="Santiago"
+                    value={values.region}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                />
+                {errors.region && touched.region && (<span className="help-text">{errors.region}</span>)}
+
+
+
+
+                <label htmlFor="commune" className="label-inputs">Comuna (*)</label>
+                <input
+                    type="text"
+                    id="commune"
+                    name="commune"
+                    placeholder="La Florida"
+                    value={values.commune}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                />
+                {errors.commune && touched.commune && (<span className="help-text">{errors.commune}</span>)}
+
+
+
+
+                <label htmlFor="message" className="label-inputs">Mensaje</label>
+                <input
+                    type="text"
+                    placeholder="Dejar en el mesón de conserjería"
+                    className="campo-formulario"
+                    id="message"
+                    name="message"
+                    value={values.message}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                />
+                {errors.message && touched.message && (<span className="help-text">{errors.message}</span>)}
 
 
               </div>
